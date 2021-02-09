@@ -1,6 +1,12 @@
 # webprogketto
 Project with my AI Guy
 
+0.4
+  New features:
+  1. Well the group has still 2 guys, but it'll be fixed! DON'T WORRY YOU FUCKERS WE ARE WORKING ON IT!
+  2. Perfomance updates
+
+
 0.3
   New featuers:
   1. Extended group size! - Now the team has 4 members, which means, the productivity is increased by 100%! How awesome is that?!?!!?!?!
@@ -10,12 +16,14 @@ Project with my AI Guy
   Bug fixes:
   1. +2 bugs added
 
+
 0.2
   New features:
   1. Much easier writing in the ReadME.md file
 
   Bug fixes:
   1. In the third mission AndrasC was straight. It was a bug. Now it's fixed.
+
 
 0.1
   New features:
