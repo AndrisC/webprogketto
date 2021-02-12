@@ -1,6 +1,14 @@
 # webprogketto
 Project with my AI Guy
 
+0.6
+  New features:
+  1. In few months open alpha will be avalible on Andorid, Mac, Xbox, PlayStation, Stadia, Microwaves and on Pregnancy Tests.
+  
+  Bug fixes:
+  1. Our servers was slow, because AndrasC was too geh. Now AndrasC is isolated so in the future it won't be a problem.
+  2. The X button did not work properly, because you don't have the X in you. Haha fokin trash!
+
 0.5
   New features:
   1. We are well aware of nemjatekos being BIG TIME GAE and we cam up with a new feature that makes the gae go away! Cheers!
