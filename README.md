@@ -1,6 +1,10 @@
 # webprogketto
 Project with my AI Guy
 
+0.5
+  New features:
+  1. We are well aware of nemjatekos being BIG TIME GAE and we cam up with a new feature that makes the gae go away! Cheers!
+
 0.4
   New features:
   1. Well the group has still 2 guys, but it'll be fixed! DON'T WORRY YOU FUCKERS WE ARE WORKING ON IT!
