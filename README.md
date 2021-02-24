@@ -1,6 +1,12 @@
 # webprogketto
 Project with my AI Guy
 
+0.7
+  New features:
+  1. We just started making the visual design of our webpage in adobe XD. It's gonna be pretty cool.
+  2. The project will be about weather forecast, which will works from an API.
+  3. András is still geh.
+
 0.6
   New features:
   1. In few months open alpha will be avalible on Andorid, Mac, Xbox, PlayStation, Stadia, Microwaves and on Pregnancy Tests.
