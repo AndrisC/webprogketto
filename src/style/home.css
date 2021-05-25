@@ -1,0 +1,42 @@
+* {
+
+}
+
+#content {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    transition: 0.3s;
+    float: top;
+    color: white;
+    font-size: 40px;
+}
+
+#middle {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    font-family: fantasy;
+}
+
+
+#colorise {
+    background-image: url("../rsc/home-bg.jpg") ;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    flex: 1;
+    overflow: auto;
+}
+
+.linky-dinky {
+    text-decoration: none;
+    background-color: #61dafb;
+    cursor: pointer;
+}
