@@ -1,42 +1,111 @@
-* {
+.expanding-info-box {
+  font-family: fantasy;
+  color: white;
+  background: #ee313b;
+  width: 25%;
+  font-size: 20px;
+  position: relative;
+  z-index: 1;
+}
 
+.expanding-info-box:before, .expanding-info-box:after {
+  content: '';
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  background: inherit;
+  z-index: -1;
+  top: 0;
+  right: -100px;
+  transform-origin: left;
+  transform: skew(-8deg);
+  border-right: 2px solid #fff;
+  box-shadow: 15px 0px 17px 5px rgba(0,0,0,0.1);
 }
 
 #content {
-    text-align: center;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    overflow: hidden;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    transition: 0.3s;
-    float: top;
+    justify-content: flex-start;
     color: white;
-    font-size: 40px;
-}
-
-#middle {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    font-family: fantasy;
-}
-
-
-#colorise {
     background-image: url("../rsc/home-bg.jpg") ;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    width: 100%;
-    flex: 1;
-    overflow: auto;
 }
 
-.linky-dinky {
+.info-container {
+  padding: 0 0 35px 60px;
+  width: 100%;
+}
+
+.title h2{
+  font-size: 45px;
+  padding: 0;
+  padding: 35px 15px;
+}
+
+.page-desc-wrapper {
+  height: calc(100vh - 320px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border: 2px solid #fff;
+  border-right: 0;
+  border-bottom: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-desc {
+  padding: 15px;
+}
+
+.page-desc:before, .page-desc:after {
+  content: '';
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 70px;
+  transform-origin: left;
+  transform: skew(-8deg);
+  border-right: 2px solid #fff;
+}
+
+.page-desc p{
+  font-size: 30px;
+  text-decoration: underline;
+  margin-bottom: 15px;
+}
+
+.page-desc li{
+  font-size: 23px;
+  padding: 0 30px 0 0;
+  margin-bottom: 15px;
+}
+
+.api-ref {
     text-decoration: none;
-    background-color: #61dafb;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+    width: 255px;
+    font-size: 18px;
+
+    border-bottom: 2px solid #fff;
+}
+
+.api-ref a {
+  cursor: pointer;
+  z-index: 2;
+  color: white;
+  text-decoration: underline;
 }

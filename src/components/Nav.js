@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style/App.css';
+import '../style/Nav.css';
 import {Link} from 'react-router-dom'
 
 function Nav() {
@@ -7,18 +7,18 @@ function Nav() {
         <nav>
             <ul className="nav-links">
                 <Link to ="/">
-                    <li>Home</li>
+                    <li><span>Home</span></li>
                 </Link>
 
                 <Link to ="/heroes">
-                    <li>Heroes</li>
+                    <li><span>Heroes</span></li>
                 </Link>
 
                 <Link to ="/search">
-                    <li>Search</li>
+                    <li><span>Search</span></li>
                 </Link>
                 <Link to ="/newHero">
-                    <li>New Hero</li>
+                    <li><span>New Hero</span></li>
                 </Link>
             </ul>
         </nav>
