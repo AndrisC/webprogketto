@@ -1,19 +1,25 @@
-import React, {useState, useEffect, Component} from 'react';
+import React, {useState, useEffect, Component, useCallback} from 'react';
 import '../style/App.css';
 import {BrowserRouter as Link} from 'react-router-dom';
+import { wait } from '@testing-library/dom';
 
 
 export default class Heroes extends React.Component {
     state = {
         loading: true,
         heroes: [],
+        idCountFrom: 1,
     };
+    
 
     async componentDidMount() {
         const url = "https://www.superheroapi.com/api.php/3061607853876230/";
-        for (let id = 1; id < 11; id++) {
-            console.log(id);
-            const hero = await (await fetch(url + id)).json();
+        this.handleRemoveHeroes();
+        console.log("listing starts from: ", this.state.idCountFrom)
+        for (let id = 0; id <= 9; id++) {
+            const currentID = this.state.idCountFrom+id;
+            console.log(currentID);
+            const hero = await (await fetch(url + currentID)).json();
             this.state.heroes.push(hero);
             console.log(this.state.heroes);
         }
@@ -21,7 +27,37 @@ export default class Heroes extends React.Component {
         this.setState({loading: false});
     }
 
+    handleRemoveHeroes() {
+        this.setState({
+            heroes: []
+        })
+    }
+
+    async handleNextButtonClick() {
+        this.setState({loading: true});
+        await this.setState({idCountFrom: this.state.idCountFrom+10});
+        this.componentDidMount();
+    }
+    
+    async handlePrevButtonClick() {
+        this.setState({loading: true});
+        await this.setState({idCountFrom: this.state.idCountFrom-10});
+        this.componentDidMount();
+    }
+
     render() {
+        const idCounter = this.state.idCountFrom; 
+        let button;
+        if (idCounter <= 1) {
+            button = <div><button onClick ={() => this.handleNextButtonClick()}>NEXT PAGE</button></div>;
+        } else if(idCounter >= 600){
+            button = <div><button onClick ={() => this.handlePrevButtonClick()}>PREVIOUS PAGE</button></div>;
+        } else {
+            button = <div>
+                       <button onClick ={() => this.handlePrevButtonClick()}>PREVIUOS PAGE</button> <button onClick ={() => this.handleNextButtonClick()}>NEXT PAGE</button>
+                    </div>;
+        }
+
         return (
             <div>
                 {this.state.loading ?
@@ -41,10 +77,11 @@ export default class Heroes extends React.Component {
                                     </a>
                                 </li>
                             </div>
-                        ))
+                        ))     
                         }
                         </ul>
-                    </div>
+                        <div>{button}</div>
+                    </div>                    
                 }
             </div>
         )
