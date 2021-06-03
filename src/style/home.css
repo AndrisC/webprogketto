@@ -2,7 +2,7 @@
   font-family: fantasy;
   color: white;
   background: #ee313b;
-  width: 25%;
+  width: 415px;
   font-size: 20px;
   position: relative;
   z-index: 1;
@@ -20,7 +20,7 @@
   transform-origin: left;
   transform: skew(-8deg);
   border-right: 2px solid #fff;
-  box-shadow: 15px 0px 17px 5px rgba(0,0,0,0.1);
+  box-shadow: 20px 0px 17px 5px rgba(0,0,0,0.1);
 }
 
 #content {
@@ -53,12 +53,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  border: 2px solid #fff;
-  border-right: 0;
-  border-bottom: 0;
   position: relative;
-  overflow: hidden;
 }
 
 .page-desc {
@@ -67,15 +62,15 @@
 
 .page-desc:before, .page-desc:after {
   content: '';
-  width: 100%;
-  height: 100vh;
+  width: 200%;
+  height: calc(99% + 1px);
   position: absolute;
-  z-index: 0;
+  z-index: 100;
   top: 0;
-  right: 70px;
+  right: 47px;
   transform-origin: left;
   transform: skew(-8deg);
-  border-right: 2px solid #fff;
+  border: 2px solid #fff;
 }
 
 .page-desc p{
@@ -99,8 +94,6 @@
     padding: 15px;
     width: 255px;
     font-size: 18px;
-
-    border-bottom: 2px solid #fff;
 }
 
 .api-ref a {
@@ -108,4 +101,19 @@
   z-index: 2;
   color: white;
   text-decoration: underline;
+}
+
+@media screen and (max-height: 800px) {
+  .title h2{
+    font-size: 35px;
+  }
+  .page-desc p{
+    font-size: 25px;
+  }
+  .page-desc li{
+    font-size: 18px;
+  }
+  .api-ref {
+    font-size: 16px;
+  }
 }
