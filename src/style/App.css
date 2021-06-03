@@ -1,42 +1,6 @@
 * {
   margin: 0;
-}
-
-h1, h2, h3, h4 {
-  padding: 10px;
-}
-
-.listed-text {
-  padding-top: 30px;
-  color: white;
-  padding-bottom: 30px;
-  list-style: none;
-  font-size: 20px;
-}
-
-.flex-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  transition: 0.3s;
-  float: top;
-}
-
-
-.flex-container > .box {
-  background-color: rgba(40, 40, 40, 0.9);
-  width: 400px;
-  height: max-content;
-  margin: 10px;
-  text-align: center;
-  line-height: 20px;
-  font-size: 30px;
-  transition: 0.3s;
-  border-radius: 30px;
-}
-
-.box:hover {
-  background-color: rgba(40, 40, 40, 1);
+  box-sizing: border-box;
 }
 
 .App {
@@ -44,25 +8,6 @@ h1, h2, h3, h4 {
   height: 100vh;
   display: flex;
   flex-flow: column;
-}
-
-#heroes {
-  background-image: url("../rsc/heroes-bg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  width: 100%;
-  flex: 1;
-  overflow: auto;
-}
-
-.cover {
-  display: block;
-  background-size: cover;
-  background-position: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
 }
 
 .loading {
@@ -80,4 +25,8 @@ h1, h2, h3, h4 {
 
 #img-no-hover {
   background-color: transparent;
+}
+
+.font-face-hl {
+ font-family: "Homelander3D";
 }
