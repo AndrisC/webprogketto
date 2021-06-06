@@ -9,6 +9,10 @@ export default class Heroes extends React.Component {
         loading: true,
         heroes: [],
         idCountFrom: 1,
+        canNextPage: true,
+        canPrevPage: false,
+        currentPage: 1,
+        pagination: [1, 2, 3, 4, 5, 6, 7, 8, 9],
     };
     
 
@@ -32,32 +36,85 @@ export default class Heroes extends React.Component {
             heroes: []
         })
     }
-
+    
     async handleNextButtonClick() {
-        this.setState({loading: true});
-        await this.setState({idCountFrom: this.state.idCountFrom+10});
+        await this.setState({
+            loading: true,
+            currentPage: this.state.currentPage+1,
+            idCountFrom: this.state.idCountFrom+10});
+        console.log("Current Page: ", this.state.currentPage);
+        this.handleButtonVisibility();
+        this.paginationCalculator();
         this.componentDidMount();
     }
     
     async handlePrevButtonClick() {
-        this.setState({loading: true});
-        await this.setState({idCountFrom: this.state.idCountFrom-10});
+        await this.setState({
+            loading: true,
+            currentPage: this.state.currentPage-1,
+            idCountFrom: this.state.idCountFrom-10});
+        console.log("Current Page: ", this.state.currentPage);
+        this.handleButtonVisibility();
+        this.paginationCalculator();
         this.componentDidMount();
     }
 
-    render() {
-        const idCounter = this.state.idCountFrom; 
-        let button;
-        if (idCounter <= 1) {
-            button = <div><button onClick ={() => this.handleNextButtonClick()}>NEXT PAGE</button></div>;
-        } else if(idCounter >= 600){
-            button = <div><button onClick ={() => this.handlePrevButtonClick()}>PREVIOUS PAGE</button></div>;
+    async handleButtonVisibility() {
+        if (this.state.idCountFrom <= 1) {
+            this.setState({canPrevPage: false});
+        } else if (this.state.idCountFrom >= 729) {
+            this.setState({canNextPage: false});
         } else {
-            button = <div>
-                       <button onClick ={() => this.handlePrevButtonClick()}>PREVIUOS PAGE</button> <button onClick ={() => this.handleNextButtonClick()}>NEXT PAGE</button>
-                    </div>;
+            this.setState({canNextPage: true});
+            this.setState({canPrevPage: true});
         }
+    }
 
+    async handlePaginationClick(pageValue) {
+        console.log("You will be redirected to page ", pageValue);
+        await this.setState({
+            loading: true,
+            currentPage: pageValue,
+            idCountFrom: pageValue*10-9});
+        this.paginationCalculator();
+        this.handleButtonVisibility();
+        this.componentDidMount();
+    }
+
+    async paginationCalculator() {
+        let updatePagination = [];
+            if (this.state.currentPage <= 5) {
+                await this.setState({pagination: [1, 2, 3, 4, 5, 6, 7, 8, 9]});
+            } else if (this.state.currentPage >= 70) {
+                await this.setState({pagination: [66, 67, 68, 69, 70, 71, 72, 73, 74]});
+            } else {
+                for (let pageNumber = 0; pageNumber <= 8; pageNumber++) {
+                    let calculatedPageNumber = this.state.currentPage - 4 + pageNumber;
+                    updatePagination[pageNumber] = calculatedPageNumber;
+                    console.log("Pagination: ", this.state.pagination[pageNumber]);
+                }
+                    await this.setState(() => ({pagination: [] = updatePagination} ));
+                
+            }
+    }
+
+    /*async paginationCalculator() {
+        let newPagination = [];
+            if (this.state.currentPage <= 5) {
+                await this.setState({pagination: [1, 2, 3, 4, 5, 6, 7, 8, 9]});
+            } else if (this.state.currentPage >= 70) {
+                await this.setState({pagination: [66, 67, 68, 69, 70, 71, 72, 73, 74]});
+            } else {
+                for (let pageNumber = 1; pageNumber <= 9; pageNumber++) {
+                    let calculatedPageNumber = this.state.currentPage - 5 + pageNumber;
+                    newPagination[pageNumber] = calculatedPageNumber;
+                    console.log("Pagination: ", newPagination[pageNumber]);
+                }
+                this.setState(() => ({ pagination: [newPagination] }))
+            }
+    }*/
+
+    render() {
         return (
             <div>
                 {this.state.loading ?
@@ -77,10 +134,16 @@ export default class Heroes extends React.Component {
                                     </a>
                                 </li>
                             </div>
-                        ))     
-                        }
+                        ))}
                         </ul>
-                        <div>{button}</div>
+                        
+                        <div><button onClick ={() => this.handleNextButtonClick()} disabled={!this.state.canNextPage}>NEXT PAGE</button></div>
+                        {this.state.pagination.map(page => (
+                            <div key ={page}>
+                                <button onClick={() => this.handlePaginationClick(page)}>{page}</button>
+                            </div>
+                        ))}
+                        <div><button onClick ={() => this.handlePrevButtonClick()} disabled={!this.state.canPrevPage}>PREVIOUS PAGE</button></div>
                     </div>                    
                 }
             </div>
