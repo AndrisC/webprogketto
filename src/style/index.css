@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "ExonOutline";
+  src: local("ExonOutline"),
+   url("../fonts/Exon/ExonOutline.otf") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "ExonRegular";
+  src: local("ExonRegular"),
+   url("../fonts/Exon/ExonRegular.otf") format("truetype");
+  font-weight: normal;
+}

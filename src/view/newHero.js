@@ -6,7 +6,7 @@ export default function newHero() {
         <div id="content-new">
             <div id="colorise-new">
                 <div id="middle">
-                    <h1>Create your own hero!</h1>
+                    <h1 class="create-hero-title">Create your own hero!</h1>
                     <dv id="new-hero">
                         <form className="inputs">
                             <p>
@@ -57,4 +57,3 @@ export default function newHero() {
         </div>
     )
 }
-
