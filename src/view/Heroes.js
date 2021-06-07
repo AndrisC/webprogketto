@@ -82,9 +82,11 @@ export default class Heroes extends React.Component {
 
     async handleButtonVisibility() {
         if (this.state.idCountFrom <= 1) {
-            this.setState({canPrevPage: false});
+            await this.setState({canPrevPage: false, canNextPage: true});
         } else if (this.state.idCountFrom >= 729) {
-          this.setState({canNextPage: false});
+          await this.setState({canNextPage: false, canPrevPage: true});
+        } else {
+          await this.setState({canNextPage: true, canPrevPage: true});
         }
     }
 
@@ -185,7 +187,7 @@ export default class Heroes extends React.Component {
 
               <div className="pagination-container">
                 <div>
-                  <button className="pag-btn" onClick ={() => this.handleNextButtonClick()} disabled={!this.state.canNextPage}>NEXT PAGE</button>
+                  <button className="pag-btn" onClick ={() => this.handlePrevButtonClick()} disabled={!this.state.canPrevPage}>PREVIOUS PAGE</button>
                 </div>
 
                 {this.state.pagination.map(page => (
@@ -200,7 +202,7 @@ export default class Heroes extends React.Component {
                 ))}
 
                 <div>
-                  <button className="pag-btn" onClick ={() => this.handlePrevButtonClick()} disabled={!this.state.canPrevPage}>PREVIOUS PAGE</button>
+                  <button className="pag-btn" onClick ={() => this.handleNextButtonClick()} disabled={!this.state.canNextPage}>NEXT PAGE</button>
                 </div>
               </div>
 
