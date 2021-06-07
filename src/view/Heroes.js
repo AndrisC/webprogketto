@@ -63,9 +63,11 @@ export default class Heroes extends React.Component {
 
     async handleButtonVisibility() {
         if (this.state.idCountFrom <= 1) {
-            this.setState({canPrevPage: false});
+            await this.setState({canPrevPage: false, canNextPage: true});
         } else if (this.state.idCountFrom >= 729) {
-          this.setState({canNextPage: false});
+          await this.setState({canNextPage: false, canPrevPage: true});
+        } else {
+          await this.setState({canNextPage: true, canPrevPage: true});
         }
     }
 
@@ -110,22 +112,6 @@ export default class Heroes extends React.Component {
 
         }
     }
-
-    /*async paginationCalculator() {
-        let newPagination = [];
-            if (this.state.currentPage <= 5) {
-                await this.setState({pagination: [1, 2, 3, 4, 5, 6, 7, 8, 9]});
-            } else if (this.state.currentPage >= 70) {
-                await this.setState({pagination: [66, 67, 68, 69, 70, 71, 72, 73, 74]});
-            } else {
-                for (let pageNumber = 1; pageNumber <= 9; pageNumber++) {
-                    let calculatedPageNumber = this.state.currentPage - 5 + pageNumber;
-                    newPagination[pageNumber] = calculatedPageNumber;
-                    console.log("Pagination: ", newPagination[pageNumber]);
-                }
-                this.setState(() => ({ pagination: [newPagination] }))
-            }
-    }*/
 
     render() {
       return (
@@ -174,7 +160,7 @@ export default class Heroes extends React.Component {
 
               <div className="pagination-container">
                 <div>
-                  <button className="pag-btn" onClick ={() => this.handleNextButtonClick()} disabled={!this.state.canNextPage}>NEXT PAGE</button>
+                  <button className="pag-btn" onClick ={() => this.handlePrevButtonClick()} disabled={!this.state.canPrevPage}>PREVIOUS PAGE</button>
                 </div>
 
                 {this.state.pagination.map(page => (
@@ -189,7 +175,7 @@ export default class Heroes extends React.Component {
                 ))}
 
                 <div>
-                  <button className="pag-btn" onClick ={() => this.handlePrevButtonClick()} disabled={!this.state.canPrevPage}>PREVIOUS PAGE</button>
+                  <button className="pag-btn" onClick ={() => this.handleNextButtonClick()} disabled={!this.state.canNextPage}>NEXT PAGE</button>
                 </div>
               </div>
 
