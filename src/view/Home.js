@@ -4,14 +4,14 @@ import '../style/Home.css';
 export default function Home() {
     return (
         <div id="content">
-          <div class="expanding-info-box">
-            <div class="info-container">
-              <div class="title">
+          <div className="expanding-info-box">
+            <div className="info-container">
+              <div className="title">
                 <h2>Welcome to the Hero collection!</h2>
               </div>
 
-              <div class="page-desc-wrapper">
-                <div class="page-desc">
+              <div className="page-desc-wrapper">
+                <div className="page-desc">
                   <p>Explore our page!</p>
                   <ul>
                     <li>Browse & search for your favorite superheros.</li>
@@ -20,7 +20,7 @@ export default function Home() {
                   </ul>
                 </div>
 
-                <div class="api-ref">
+                <div className="api-ref">
                   <span>Check out the API we used:</span>
                   <a href="https://superheroapi.com" target="_blank">https://superheroapi.com/</a>
                 </div>

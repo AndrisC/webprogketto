@@ -27,7 +27,7 @@ export default class Heroes extends React.Component {
             console.log(currentID);
             const hero = await (await fetch(url + currentID)).json();
             this.state.heroes.push(hero);
-            console.log(this.state.heroes);
+            // console.log(this.state.heroes);
         }
 
         this.setState({loading: false});
@@ -38,7 +38,7 @@ export default class Heroes extends React.Component {
             heroes: []
         })
     }
-    
+
     async handleNextButtonClick() {
         await this.setState({
             loading: true,
@@ -61,13 +61,14 @@ export default class Heroes extends React.Component {
         this.componentDidMount();
     }
 
-<<<<<<< HEAD
     async handleButtonVisibility() {
         if (this.state.idCountFrom <= 1) {
             this.setState({canPrevPage: false});
         } else if (this.state.idCountFrom >= 729) {
-            this.setState({canNextPage: false});
-=======
+          this.setState({canNextPage: false});
+        }
+    }
+
     render() {
         const idCounter = this.state.idCountFrom;
         let button;
@@ -75,12 +76,10 @@ export default class Heroes extends React.Component {
             button = <div><button onClick ={() => this.handleNextButtonClick()}>NEXT PAGE</button></div>;
         } else if(idCounter >= 600){
             button = <div><button onClick ={() => this.handlePrevButtonClick()}>PREVIOUS PAGE</button></div>;
->>>>>>> c7da033b371e48dff434cead5b1c6175f54d5611
         } else {
             this.setState({canNextPage: true});
             this.setState({canPrevPage: true});
         }
-<<<<<<< HEAD
     }
 
     async handlePaginationClick(pageValue) {
@@ -93,27 +92,23 @@ export default class Heroes extends React.Component {
         this.handleButtonVisibility();
         this.componentDidMount();
     }
-=======
-        if (true) {
-
-        }
->>>>>>> c7da033b371e48dff434cead5b1c6175f54d5611
 
     async paginationCalculator() {
         let updatePagination = [];
-            if (this.state.currentPage <= 5) {
-                await this.setState({pagination: [1, 2, 3, 4, 5, 6, 7, 8, 9]});
-            } else if (this.state.currentPage >= 70) {
-                await this.setState({pagination: [66, 67, 68, 69, 70, 71, 72, 73, 74]});
-            } else {
-                for (let pageNumber = 0; pageNumber <= 8; pageNumber++) {
-                    let calculatedPageNumber = this.state.currentPage - 4 + pageNumber;
-                    updatePagination[pageNumber] = calculatedPageNumber;
-                    console.log("Pagination: ", this.state.pagination[pageNumber]);
-                }
-                    await this.setState(() => ({pagination: [] = updatePagination} ));
-                
+
+        if (this.state.currentPage <= 5) {
+            await this.setState({pagination: [1, 2, 3, 4, 5, 6, 7, 8, 9]});
+        } else if (this.state.currentPage >= 70) {
+            await this.setState({pagination: [66, 67, 68, 69, 70, 71, 72, 73, 74]});
+        } else {
+            for (let pageNumber = 0; pageNumber <= 8; pageNumber++) {
+                let calculatedPageNumber = this.state.currentPage - 4 + pageNumber;
+                updatePagination[pageNumber] = calculatedPageNumber;
+                console.log("Pagination: ", this.state.pagination[pageNumber]);
             }
+                await this.setState(() => ({pagination: [] = updatePagination} ));
+
+        }
     }
 
     /*async paginationCalculator() {
@@ -133,87 +128,74 @@ export default class Heroes extends React.Component {
     }*/
 
     render() {
-        return (
-<<<<<<< HEAD
-            <div>
-                {this.state.loading ?
-                    <div className="loading">loading...</div> :
-                    <div id="heroes">
-                        <ul className="flex-container">
-                        {this.state.heroes.map(hero => (
-                            <div key={hero.id.toString()} className="box">
-                                <li className="listed-text">
-                                    <img className="cover" src={hero.image.url}></img>
-                                    <h1>- {hero.name} -</h1>
-                                    <h2>{hero.biography["full-name"]}</h2>
-                                    <h3>{hero.work.occupation}</h3>
-                                    <h3>{hero.appearance.race}</h3>
-                                    <a href={'/hero/' + hero.id}>
-                                        <Link to={'/hero/' + hero.id}>More info</Link>
-                                    </a>
-                                </li>
-                            </div>
-                        ))}
-                        </ul>
-                        
-                        <div><button onClick ={() => this.handleNextButtonClick()} disabled={!this.state.canNextPage}>NEXT PAGE</button></div>
-                        {this.state.pagination.map(page => (
-                            <div key ={page}>
-                                <button onClick={() => this.handlePaginationClick(page)}>{page}</button>
-                            </div>
-                        ))}
-                        <div><button onClick ={() => this.handlePrevButtonClick()} disabled={!this.state.canPrevPage}>PREVIOUS PAGE</button></div>
-                    </div>                    
-                }
-=======
-            <div class="heroes-page">
-              {this.state.loading ?
-                <div class="loading">loading...</div> :
+      return (
+        <div className="heroes-page">
+          {this.state.loading ?
+            <div className="loading">loading...</div> :
 
-                <div id="heroes">
-                  <div class="page-title">
-                    <h1>Hero collection</h1>
-                  </div>
+            <div id="heroes">
+              <div className="page-title">
+                <h1>Hero collection</h1>
+              </div>
 
-                  <div class="card-container">
-                    {this.state.heroes.map(hero => (
-                      <div key={hero.id.toString()} class="hero-card">
-                        <img class="hero-pic" src={hero.image.url}></img>
-                        <img class="hero-card-bg" src={hero.image.url}></img>
+              <div className="card-container">
+                {this.state.heroes.map(hero => (
+                  <div key={hero.id.toString()} className="hero-card">
+                    <img className="hero-pic" src={hero.image.url}></img>
+                    <img className="hero-card-bg" src={hero.image.url}></img>
 
-                        <div class="hero-info">
-                          <span>Name:</span>
-                          <h2>{hero.name}</h2>
+                    <div className="hero-info">
+                      <span>Name:</span>
+                      <h2>{hero.name}</h2>
 
-                          <span>Full name:</span>
-                          {(hero.biography["full-name"] == "") ?
-                            <h2>Unknown</h2> :
-                            <h2>{hero.biography["full-name"]}</h2>
-                          }
+                      <span>Full name:</span>
+                      {(hero.biography["full-name"] == "") ?
+                        <h2>Unknown</h2> :
+                        <h2>{hero.biography["full-name"]}</h2>
+                      }
 
-                          <span>Race:</span>
-                          {(hero.appearance.race == "null") ?
-                            <h2>Unknown</h2> :
-                            <h2>{hero.appearance.race}</h2>
-                          }
+                      <span>Race:</span>
+                      {(hero.appearance.race == "null") ?
+                        <h2>Unknown</h2> :
+                        <h2>{hero.appearance.race}</h2>
+                      }
 
-                          <div class="btn-container">
-                            <a href={'/hero/' + hero.id}>
-                              <button class="more-info-btn" type="button">
-                                <Link to={'/hero/' + hero.id}>More info</Link>
-                              </button>
-                            </a>
-                          </div>
-                        </div>
+                      <div className="btn-container">
+                        <a href={'/hero/' + hero.id}>
+                          <button className="more-info-btn" type="button">
+                            <Link to={'/hero/' + hero.id}>More info</Link>
+                          </button>
+                        </a>
                       </div>
-                    ))}
+                    </div>
                   </div>
+                ))}
+              </div>
 
-                  <div>{button}</div>
+              <div className="pagination-container">
+                <div>
+                  <button className="pag-btn" onClick ={() => this.handleNextButtonClick()} disabled={!this.state.canNextPage}>NEXT PAGE</button>
                 </div>
-              }
->>>>>>> c7da033b371e48dff434cead5b1c6175f54d5611
+
+                {this.state.pagination.map(page => (
+                  <div key ={page}>
+                    <button
+                      className={`single-pag-btn ${(this.state.currentPage == page)  ? "active" : ""}`}
+                      onClick={() => this.handlePaginationClick(page)}
+                    >
+                    {page}
+                    </button>
+                  </div>
+                ))}
+
+                <div>
+                  <button className="pag-btn" onClick ={() => this.handlePrevButtonClick()} disabled={!this.state.canPrevPage}>PREVIOUS PAGE</button>
+                </div>
+              </div>
+
             </div>
-        )
+          }
+        </div>
+      )
     }
 }

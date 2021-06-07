@@ -31,3 +31,54 @@
   padding: 0 75px;
   width: 100%;
 }
+
+.pagination-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.pag-btn {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #fff;
+  border-radius: 0;
+  width: 115px;
+  height: 35px;
+  font-size: 20px;
+  font-family: ExonRegular;
+  cursor: pointer;
+  transform-origin: left;
+  transform: skew(-8deg);
+  margin: 0 20px;
+}
+
+.single-pag-btn {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #fff;
+  height: 35px;
+  font-size: 25px;
+  padding: 0 10px;
+  font-family: ExonRegular;
+  cursor: pointer;
+  transform-origin: left;
+  transform: skew(-8deg);
+  margin: 0 2px;
+  transition: all .2s ease;
+  opacity: .8;
+}
+
+.single-pag-btn:hover {
+  opacity: 1;
+  transform-origin: center;
+  transform: scale(1.15) skew(-8deg);
+}
+
+.active {
+  opacity: 1;
+  transform-origin: center;
+  transform: scale(1.15) skew(-8deg);
+}
