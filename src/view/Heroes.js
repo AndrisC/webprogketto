@@ -4,12 +4,15 @@ import '../style/Heroes.css';
 import '../style/Herocard.css';
 import {BrowserRouter as Link} from 'react-router-dom';
 import { wait } from '@testing-library/dom';
+import HeroDetail from '../components/heroDetail';
 
 
 export default class Heroes extends React.Component {
     state = {
         loading: true,
         heroes: [],
+        showComponent: false,
+        heroid: 0,
         idCountFrom: 1,
         canNextPage: true,
         canPrevPage: false,
@@ -18,9 +21,25 @@ export default class Heroes extends React.Component {
     };
 
 
+    _onButtonClick(hero) {
+      this.setState({
+        showComponent: true,
+        heroid: hero.id,
+      });
+      console.log(hero);
+    }
+
+    hideComponent() {
+      this.setState({
+        showComponent: false,
+      });
+    }
+
     async componentDidMount() {
         const url = "https://www.superheroapi.com/api.php/3061607853876230/";
         this.handleRemoveHeroes();
+        this._onButtonClick = this._onButtonClick.bind(this);
+        this.hideComponent = this.hideComponent.bind(this);
         console.log("listing starts from: ", this.state.idCountFrom)
         for (let id = 0; id <= 9; id++) {
             const currentID = this.state.idCountFrom+id;
@@ -111,22 +130,6 @@ export default class Heroes extends React.Component {
         }
     }
 
-    /*async paginationCalculator() {
-        let newPagination = [];
-            if (this.state.currentPage <= 5) {
-                await this.setState({pagination: [1, 2, 3, 4, 5, 6, 7, 8, 9]});
-            } else if (this.state.currentPage >= 70) {
-                await this.setState({pagination: [66, 67, 68, 69, 70, 71, 72, 73, 74]});
-            } else {
-                for (let pageNumber = 1; pageNumber <= 9; pageNumber++) {
-                    let calculatedPageNumber = this.state.currentPage - 5 + pageNumber;
-                    newPagination[pageNumber] = calculatedPageNumber;
-                    console.log("Pagination: ", newPagination[pageNumber]);
-                }
-                this.setState(() => ({ pagination: [newPagination] }))
-            }
-    }*/
-
     render() {
       return (
         <div className="heroes-page">
@@ -161,12 +164,20 @@ export default class Heroes extends React.Component {
                       }
 
                       <div className="btn-container">
-                        <a href={'/hero/' + hero.id}>
-                          <button className="more-info-btn" type="button">
-                            <Link to={'/hero/' + hero.id}>More info</Link>
+                          <button onClick={() => this._onButtonClick(hero)} className="more-info-btn" type="button">
+                            More info
                           </button>
-                        </a>
                       </div>
+
+                    </div>
+                    <div className="hero-component">
+                      {this.state.showComponent && hero.id == this.state.heroid ?
+                        <div className="hero-details-wrapper">
+                          <div onClick={this.hideComponent} className="hero-details-overlay"></div>
+                          <HeroDetail hero={hero}/>
+                        </div> :
+                        null
+                      }
                     </div>
                   </div>
                 ))}
