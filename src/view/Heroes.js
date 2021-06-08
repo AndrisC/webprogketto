@@ -18,6 +18,7 @@ export default class Heroes extends React.Component {
         canPrevPage: false,
         currentPage: 1,
         pagination: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+        heroAmountPerPage: 12,
     };
 
 
@@ -41,7 +42,7 @@ export default class Heroes extends React.Component {
         this._onButtonClick = this._onButtonClick.bind(this);
         this.hideComponent = this.hideComponent.bind(this);
         console.log("listing starts from: ", this.state.idCountFrom)
-        for (let id = 0; id <= 9; id++) {
+        for (let id = 0; id <= this.state.heroAmountPerPage-1; id++) {
             const currentID = this.state.idCountFrom+id;
             console.log(currentID);
             const hero = await (await fetch(url + currentID)).json();
@@ -62,8 +63,8 @@ export default class Heroes extends React.Component {
     async handleNextButtonClick() {
         await this.setState({
             loading: true,
-            currentPage: this.state.currentPage+1,
-            idCountFrom: this.state.idCountFrom+10});
+            currentPage: this.state.currentPage + 1,
+            idCountFrom: this.state.idCountFrom + this.state.heroAmountPerPage});
         console.log("Current Page: ", this.state.currentPage);
         this.handleButtonVisibility();
         this.paginationCalculator();
@@ -73,8 +74,8 @@ export default class Heroes extends React.Component {
     async handlePrevButtonClick() {
         await this.setState({
             loading: true,
-            currentPage: this.state.currentPage-1,
-            idCountFrom: this.state.idCountFrom-10});
+            currentPage: this.state.currentPage - 1,
+            idCountFrom: this.state.idCountFrom - this.state.heroAmountPerPage});
         console.log("Current Page: ", this.state.currentPage);
         this.handleButtonVisibility();
         this.paginationCalculator();
@@ -82,25 +83,12 @@ export default class Heroes extends React.Component {
     }
 
     async handleButtonVisibility() {
-        if (this.state.idCountFrom <= 1) {
+        if (this.state.currentPage <= 1) {
             await this.setState({canPrevPage: false, canNextPage: true});
-        } else if (this.state.idCountFrom >= 729) {
+        } else if (this.state.currentPage == 61) {
           await this.setState({canNextPage: false, canPrevPage: true});
         } else {
           await this.setState({canNextPage: true, canPrevPage: true});
-        }
-    }
-
-    render() {
-        const idCounter = this.state.idCountFrom;
-        let button;
-        if (idCounter <= 1) {
-            button = <div><button onClick ={() => this.handleNextButtonClick()}>NEXT PAGE</button></div>;
-        } else if(idCounter >= 600){
-            button = <div><button onClick ={() => this.handlePrevButtonClick()}>PREVIOUS PAGE</button></div>;
-        } else {
-            this.setState({canNextPage: true});
-            this.setState({canPrevPage: true});
         }
     }
 
@@ -109,7 +97,7 @@ export default class Heroes extends React.Component {
         await this.setState({
             loading: true,
             currentPage: pageValue,
-            idCountFrom: pageValue*10-9});
+            idCountFrom: pageValue*this.state.heroAmountPerPage-(this.state.heroAmountPerPage-1)});
         this.paginationCalculator();
         this.handleButtonVisibility();
         this.componentDidMount();
@@ -120,8 +108,8 @@ export default class Heroes extends React.Component {
 
         if (this.state.currentPage <= 5) {
             await this.setState({pagination: [1, 2, 3, 4, 5, 6, 7, 8, 9]});
-        } else if (this.state.currentPage >= 70) {
-            await this.setState({pagination: [66, 67, 68, 69, 70, 71, 72, 73, 74]});
+        } else if (this.state.currentPage >= 57) {
+            await this.setState({pagination: [53, 54, 55, 56, 57, 58, 59, 60, 61]});
         } else {
             for (let pageNumber = 0; pageNumber <= 8; pageNumber++) {
                 let calculatedPageNumber = this.state.currentPage - 4 + pageNumber;
