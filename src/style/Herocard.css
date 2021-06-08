@@ -1,7 +1,6 @@
 .hero-card {
   display: flex;
   background-color: #372d2d;
-  /* border: 2px solid #fff; */
   box-shadow: 0px 6px 14px 8px rgba(0,0,0,0.25);
   border-radius: 5px;
   overflow: hidden;
@@ -44,7 +43,7 @@
 .btn-container {
   position: absolute;
   right: 15px;
-  bottom: 15px;
+  bottom: 10px;
 }
 
 .more-info-btn {
@@ -57,4 +56,10 @@
   font-size: 20px;
   font-family: ExonRegular;
   cursor: pointer;
+  transition: all .2s ease;
+}
+
+.more-info-btn:hover {
+  transform-origin: center;
+  transform: scale(1.1);
 }

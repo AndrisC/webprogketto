@@ -53,6 +53,7 @@
   transform-origin: left;
   transform: skew(-8deg);
   margin: 0 20px;
+  transition: all .2s ease;
 }
 
 .single-pag-btn {
@@ -75,6 +76,12 @@
   opacity: 1;
   transform-origin: center;
   transform: scale(1.15) skew(-8deg);
+}
+
+.pag-btn:hover {
+  opacity: 1;
+  transform-origin: left;
+  transform: scale(1.1) skew(-8deg);
 }
 
 .active {
