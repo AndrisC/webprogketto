@@ -98,7 +98,7 @@
 
 .api-ref a {
   cursor: pointer;
-  z-index: 2;
+  z-index: 100;
   color: white;
   text-decoration: underline;
 }
