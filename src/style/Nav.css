@@ -2,10 +2,10 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #ee313b;
+  background-color: #d62c15;
   z-index: 2;
-  max-height: 90px;
-  min-height: 90px;
+  max-height: 80px;
+  min-height: 80px;
   box-shadow: 0px 3px 12px 5px rgba(0,0,0,0.15);
 }
 
@@ -21,9 +21,10 @@ nav {
 .nav-links li {
   color: #fff;
   text-decoration: none;
-  font-family: fantasy;
+  font-family: ExonRegular;
+  font-weight: bold;
   padding: 25px 0px;
-  font-size: 30px;
+  font-size: 36px;
   margin: 0 12px;
   transition: 0.4s;
   overflow: hidden;
