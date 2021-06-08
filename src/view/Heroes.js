@@ -47,6 +47,7 @@ export default class Heroes extends React.Component {
             const hero = await (await fetch(url + currentID)).json();
             this.state.heroes.push(hero);
             // console.log(this.state.heroes);
+            console.log(document);
         }
 
         this.setState({loading: false});
@@ -187,7 +188,11 @@ export default class Heroes extends React.Component {
 
               <div className="pagination-container">
                 <div>
-                  <button className="pag-btn" onClick ={() => this.handlePrevButtonClick()} disabled={!this.state.canPrevPage}>PREVIOUS PAGE</button>
+                  <button
+                    className={`pag-btn ${(!this.state.canPrevPage)  ? "pag-btn-disabled" : ""}`}
+                    onClick ={() => this.handlePrevButtonClick()}
+                    disabled={!this.state.canPrevPage}>PREVIOUS PAGE
+                  </button>
                 </div>
 
                 {this.state.pagination.map(page => (
@@ -202,7 +207,10 @@ export default class Heroes extends React.Component {
                 ))}
 
                 <div>
-                  <button className="pag-btn" onClick ={() => this.handleNextButtonClick()} disabled={!this.state.canNextPage}>NEXT PAGE</button>
+                  <button
+                    className={`pag-btn ${(!this.state.canNextPage)  ? "pag-btn-disabled" : ""}`}
+                    onClick ={() => this.handleNextButtonClick()}
+                    disabled={!this.state.canNextPage}>NEXT PAGE</button>
                 </div>
               </div>
 
