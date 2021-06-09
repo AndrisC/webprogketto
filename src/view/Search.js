@@ -16,16 +16,19 @@ export default class Search extends React.Component {
     async fetchResults() {
         const urlName = "/api/3061607853876230/search/";
         const nameFragment = document.getElementById("search-txt").value;
-        console.log(nameFragment);
+        console.log("Search: ", nameFragment);
         axios.get(urlName + nameFragment).then(value => {
-            console.log(value)
             this.state.searchResults = value.data.results;
             console.log(this.state.searchResults)
+            this.resultCheck();
             this.setState({loaded: true});
-            {
-                console.log(this.state.loaded + " fetches loaded érték")
-            }
         });
+    }
+
+    async resultCheck() {
+        if (typeof this.state.searchResults == 'undefined') {
+            console.log("No results to show");
+        }
     }
 
     render() {
@@ -46,7 +49,6 @@ export default class Search extends React.Component {
                             onClick={() => {
                                 this.fetchResults()
                             }}>
-                            {console.log(this.state.loaded)}
                         </img>
                     </div>
                 </div>
@@ -59,7 +61,6 @@ export default class Search extends React.Component {
                                 <ul id="flex-container-bg" className="flex-container">
                                     {this.state.searchResults.map(result => (
                                         <div key={result.id} className="box">
-                                            {console.log(result, "asdasdasd")}
                                             <li className="listed-text">
                                                 <a id="img-no-hover" href={'/hero/' + result.id}>
                                                     <img className="cover" src={result.image.url}></img>
