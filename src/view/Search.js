@@ -46,7 +46,7 @@ export default class Search extends React.Component {
     }
 
     async resultCheck() {
-        if (typeof this.state.searchResults == 'undefined') {
+        if (typeof this.state.searchResults === 'undefined') {
             console.log("No results to show");
         }
     }
@@ -77,9 +77,9 @@ export default class Search extends React.Component {
             <div className="container-title">
               <h3>Results:</h3>
             </div>
-            {!this.state.loaded || this.state.searchResults == null ?
+            {!this.state.loaded || this.state.searchResults === null ?
               <div className="container-title">
-                {typeof this.state.searchResults == 'undefined' ?
+                {typeof this.state.searchResults === 'undefined' ?
                   <p>No superhero found with that name... sorry</p> :
                   <p>the results will appear here...</p>
                 }
@@ -95,13 +95,13 @@ export default class Search extends React.Component {
                       <h2>{result.name}</h2>
 
                       <span>Full name:</span>
-                      {(result.biography["full-name"] == "") ?
+                      {(result.biography["full-name"] === "") ?
                         <h2>Unknown</h2> :
                         <h2>{result.biography["full-name"]}</h2>
                       }
 
                       <span>Race:</span>
-                      {(result.appearance.race == "null") ?
+                      {(result.appearance.race === "null") ?
                         <h2>Unknown</h2> :
                         <h2>{result.appearance.race}</h2>
                       }
@@ -114,7 +114,7 @@ export default class Search extends React.Component {
                     </div>
 
                     <div className="hero-component">
-                      {this.state.showComponent && result.id == this.state.heroid ?
+                      {this.state.showComponent && result.id === this.state.heroid ?
                         <div className="hero-details-wrapper">
                           <div onClick={this.hideComponent} className="hero-details-overlay"></div>
                           <HeroDetail hero={result}/>

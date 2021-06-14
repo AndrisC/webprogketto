@@ -1,8 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import '../style/HeroDetail.css';
 import ReactDOM from "react-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class HeroDetail extends React.Component {
+    state = {
+      pwr_avrg: Math.floor((parseInt(this.props.hero.powerstats.intelligence) +
+      parseInt(this.props.hero.powerstats.power) +
+      parseInt(this.props.hero.powerstats.speed) +
+      parseInt(this.props.hero.powerstats.strength) +
+      parseInt(this.props.hero.powerstats.combat))/5),
+    };
+
     render() {
       return (
         <div>
@@ -36,21 +45,49 @@ class HeroDetail extends React.Component {
 
                   <div className="details-powerstats details">
                     <h2>Powerstats</h2>
-                    <div className="one-detail">
+
+                    <div className="power-average">
+                      { this.state.pwr_avrg.toString() !== "NaN" ?
+                        <h1>{this.state.pwr_avrg}</h1> :
+                        null
+                      }
+
+                    </div>
+
+                    <div className="one-detail power-stat">
                       <span>Intelligence:</span>
-                      <h3>{this.props.hero.powerstats.intelligence}</h3>
+                      <div className="power-container">
+                        <h3>{this.props.hero.powerstats.intelligence}</h3>
+                        <FontAwesomeIcon className="power-icon" icon="brain"/>
+                      </div>
                     </div>
-                    <div className="one-detail">
-                      <span>Power:</span><h3>{this.props.hero.powerstats.power}</h3>
+                    <div className="one-detail power-stat">
+                      <span>Power:</span>
+                      <div className="power-container">
+                        <h3>{this.props.hero.powerstats.power}</h3>
+                        <FontAwesomeIcon className="power-icon" icon="bolt"/>
+                      </div>
                     </div>
-                    <div className="one-detail">
-                      <span>Speed:</span><h3>{this.props.hero.powerstats.speed}</h3>
+                    <div className="one-detail power-stat">
+                      <span>Speed:</span>
+                      <div className="power-container">
+                        <h3>{this.props.hero.powerstats.speed}</h3>
+                        <FontAwesomeIcon className="power-icon" icon="forward"/>
+                      </div>
                     </div>
-                    <div className="one-detail">
-                      <span>Strength:</span><h3>{this.props.hero.powerstats.strength}</h3>
+                    <div className="one-detail power-stat">
+                      <span>Strength:</span>
+                      <div className="power-container">
+                        <h3>{this.props.hero.powerstats.strength}</h3>
+                        <FontAwesomeIcon className="power-icon" icon="dumbbell"/>
+                      </div>
                     </div>
-                    <div className="one-detail">
-                      <span>Combat:</span><h3>{this.props.hero.powerstats.combat}</h3>
+                    <div className="one-detail power-stat">
+                      <span>Combat:</span>
+                      <div className="power-container">
+                        <h3>{this.props.hero.powerstats.combat}</h3>
+                        <FontAwesomeIcon className="power-icon" icon="fist-raised"/>
+                      </div>
                     </div>
                   </div>
                 </div>

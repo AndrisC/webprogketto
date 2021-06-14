@@ -4,6 +4,7 @@ import '../style/Heroes.css';
 import '../style/Herocard.css';
 import {BrowserRouter as Link} from 'react-router-dom';
 import { wait } from '@testing-library/dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import HeroDetail from '../components/heroDetail';
 
 
@@ -85,7 +86,7 @@ export default class Heroes extends React.Component {
     async handleButtonVisibility() {
         if (this.state.currentPage <= 1) {
             await this.setState({canPrevPage: false, canNextPage: true});
-        } else if (this.state.currentPage == 61) {
+        } else if (this.state.currentPage === 61) {
           await this.setState({canNextPage: false, canPrevPage: true});
         } else {
           await this.setState({canNextPage: true, canPrevPage: true});
@@ -93,14 +94,16 @@ export default class Heroes extends React.Component {
     }
 
     async handlePaginationClick(pageValue) {
-        console.log("You will be redirected to page ", pageValue);
-        await this.setState({
+        if(pageValue !== this.state.currentPage) {
+          console.log("You will be redirected to page ", pageValue);
+          await this.setState({
             loading: true,
             currentPage: pageValue,
             idCountFrom: pageValue*this.state.heroAmountPerPage-(this.state.heroAmountPerPage-1)});
-        this.paginationCalculator();
-        this.handleButtonVisibility();
-        this.componentDidMount();
+            this.paginationCalculator();
+            this.handleButtonVisibility();
+            this.componentDidMount();
+        }
     }
 
     async paginationCalculator() {
@@ -161,13 +164,13 @@ export default class Heroes extends React.Component {
                       <h2>{hero.name}</h2>
 
                       <span>Full name:</span>
-                      {(hero.biography["full-name"] == "") ?
+                      {(hero.biography["full-name"] === "") ?
                         <h2>Unknown</h2> :
                         <h2>{hero.biography["full-name"]}</h2>
                       }
 
                       <span>Race:</span>
-                      {(hero.appearance.race == "null") ?
+                      {(hero.appearance.race === "null") ?
                         <h2>Unknown</h2> :
                         <h2>{hero.appearance.race}</h2>
                       }
@@ -180,9 +183,16 @@ export default class Heroes extends React.Component {
 
                     </div>
                     <div className="hero-component">
-                      {this.state.showComponent && hero.id == this.state.heroid ?
+                      {this.state.showComponent && hero.id === this.state.heroid ?
                         <div className="hero-details-wrapper">
                           <div onClick={this.hideComponent} className="hero-details-overlay"></div>
+                          <div className="guide-div">
+                            <div class="g-d">
+                              <div className="close-icon" onClick={this.hideComponent}>
+                                <p>X</p>
+                              </div>
+                            </div>
+                          </div>
                           <HeroDetail hero={hero}/>
                         </div> :
                         null
@@ -204,7 +214,7 @@ export default class Heroes extends React.Component {
                 {this.state.pagination.map(page => (
                   <div key ={page}>
                     <button
-                      className={`single-pag-btn ${(this.state.currentPage == page)  ? "active" : ""}`}
+                      className={`single-pag-btn ${(this.state.currentPage === page)  ? "active" : ""}`}
                       onClick={() => this.handlePaginationClick(page)}
                     >
                     {page}

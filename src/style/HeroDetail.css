@@ -72,6 +72,7 @@
 .details-powerstats {
   width: 94%;
   height: 48%;
+  position: relative;
 }
 
 .details-biography {
@@ -112,4 +113,29 @@
 .detail-column span {
   margin-bottom: 3px;
   border-bottom: 1px solid white;
+}
+
+.one-detail {
+  justify-content: space-between;
+}
+
+.power-container {
+  display: flex;
+  align-items: center;
+}
+
+.power-icon {
+  margin-left: 15px;
+  height: 23px;
+  width: 23px;
+  opacity: .8;
+}
+
+.power-average {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  opacity: .1;
+  font-size: 120px;
 }
