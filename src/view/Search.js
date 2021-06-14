@@ -1,12 +1,10 @@
-import React, {useState, useEffect, Component} from 'react';
+import React, {} from 'react';
 import '../style/App.css';
 import '../style/Herocard.css';
 import '../style/Heroes.css';
 import '../style/search.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import search from '../rsc/search.png';
 import axios from "axios";
-import {BrowserRouter as Link} from "react-router-dom";
 import HeroDetail from '../components/heroDetail';
 
 

@@ -25,16 +25,12 @@
     position: relative;
     padding: 40px;
     width: 80%;
-    font-family: fantasy;
     color: white;
     font-size: 40px;
 }
 
 label {
     float: left;
-}
-.inputs {
-
 }
 
 .inputs input{
