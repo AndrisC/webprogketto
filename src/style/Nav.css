@@ -45,7 +45,7 @@ a {
 .nav-links span::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -3px;
   left: -1px;
   width: 100%;
   height: 0.1em;

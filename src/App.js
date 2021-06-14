@@ -7,7 +7,10 @@ import Home from "./view/Home";
 import newHero from "./view/newHero";
 import heroDetail from './components/heroDetail';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 
+library.add(fas)
 
 function App() {
     return (

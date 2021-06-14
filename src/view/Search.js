@@ -1,28 +1,48 @@
 import React, {useState, useEffect, Component} from 'react';
-import '../style/search.css';
 import '../style/App.css';
+import '../style/Herocard.css';
+import '../style/Heroes.css';
+import '../style/search.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import search from '../rsc/search.png';
 import axios from "axios";
 import {BrowserRouter as Link} from "react-router-dom";
+import HeroDetail from '../components/heroDetail';
 
 
 export default class Search extends React.Component {
     state = {
-        loaded: false,
-        searchResults: [],
+      heroid: 0,
+      loaded: false,
+      searchResults: [],
     };
 
+    _onButtonClick(hero) {
+      this.setState({
+        showComponent: true,
+        heroid: hero.id,
+      });
+      console.log(hero);
+    }
+
+    hideComponent() {
+      this.setState({
+        showComponent: false,
+      });
+    }
 
     async fetchResults() {
-        const urlName = "/api/3061607853876230/search/";
-        const nameFragment = document.getElementById("search-txt").value;
-        console.log("Search: ", nameFragment);
-        axios.get(urlName + nameFragment).then(value => {
-            this.state.searchResults = value.data.results;
-            console.log(this.state.searchResults)
-            this.resultCheck();
-            this.setState({loaded: true});
-        });
+      const urlName = "/api/3061607853876230/search/";
+      const nameFragment = document.getElementById("search-txt").value;
+      this._onButtonClick = this._onButtonClick.bind(this);
+      this.hideComponent = this.hideComponent.bind(this);
+      console.log("Search: ", nameFragment);
+      axios.get(urlName + nameFragment).then(value => {
+        this.state.searchResults = value.data.results;
+        console.log(this.state.searchResults)
+        this.resultCheck();
+        this.setState({loaded: true});
+      });
     }
 
     async resultCheck() {
@@ -32,58 +52,83 @@ export default class Search extends React.Component {
     }
 
     render() {
-        return (
-            <div id="flex-container-bg" className="S-app">
-                <div className="search-bg"></div>
-                <div id="search-field">
+      return (
+        <div id="search-container">
+          <div className="page-title">
+            <h1>Search in the collection</h1>
 
-                    <div className="search-box">
-                        <input
-                            id="search-txt"
-                            type="text"
-                            placeholder="Search your favorite hero"
-                        />
-                        <img
-                            className="search-icon"
-                            src={search}
-                            onClick={() => {
-                                this.fetchResults()
-                            }}>
-                        </img>
-                    </div>
-                </div>
+            <div className="search-field">
+              <input
+                id="search-txt"
+                type="text"
+                placeholder="Ironman..."
+              />
 
-                <div id="result-field">
-                    <div>
-                        {!this.state.loaded || this.state.searchResults == null ?
-                            <div></div> :
-                            <div>
-                                <ul id="flex-container-bg" className="flex-container">
-                                    {this.state.searchResults.map(result => (
-                                        <div key={result.id} className="box">
-                                            <li className="listed-text">
-                                                <a id="img-no-hover" href={'/hero/' + result.id}>
-                                                    <img className="cover" src={result.image.url}></img>
-                                                </a>
-                                                <h1>- {result.name} -</h1>
-                                                <h2>{result.biography["full-name"]}</h2>
-                                                <h3>{result.work.occupation}</h3>
-                                                <h3>{result.appearance.race}</h3>
-                                                <a href={'/hero/' + result.id}>
-                                                    <Link to={'/hero/' + result.id}>More info</Link>
-                                                </a>
-                                            </li>
-                                        </div>
-
-                                    ))}
-
-                                </ul>
-                            </div>
-                        }
-                    </div>
-                </div>
-
+              <FontAwesomeIcon
+                icon="search"
+                className="search-icon"
+                onClick={() => this.fetchResults()}
+              />
             </div>
-        );
+          </div>
+
+
+          <div>
+            <div className="container-title">
+              <h3>Results:</h3>
+            </div>
+            {!this.state.loaded || this.state.searchResults == null ?
+              <div className="container-title">
+                {typeof this.state.searchResults == 'undefined' ?
+                  <p>No superhero found with that name... sorry</p> :
+                  <p>the results will appear here...</p>
+                }
+              </div> :
+              <div className="card-container">
+                {this.state.searchResults.map(result => (
+                  <div key={result.id.toString()} className="hero-card">
+                    <img className="hero-pic" src={result.image.url}></img>
+                    <img className="hero-card-bg" src={result.image.url}></img>
+
+                    <div className="hero-info">
+                      <span>Name:</span>
+                      <h2>{result.name}</h2>
+
+                      <span>Full name:</span>
+                      {(result.biography["full-name"] == "") ?
+                        <h2>Unknown</h2> :
+                        <h2>{result.biography["full-name"]}</h2>
+                      }
+
+                      <span>Race:</span>
+                      {(result.appearance.race == "null") ?
+                        <h2>Unknown</h2> :
+                        <h2>{result.appearance.race}</h2>
+                      }
+
+                      <div className="btn-container">
+                        <button onClick={() => this._onButtonClick(result)} className="more-info-btn" type="button">
+                          More info
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="hero-component">
+                      {this.state.showComponent && result.id == this.state.heroid ?
+                        <div className="hero-details-wrapper">
+                          <div onClick={this.hideComponent} className="hero-details-overlay"></div>
+                          <HeroDetail hero={result}/>
+                        </div> :
+                        null
+                      }
+                    </div>
+                </div>
+                ))}
+              </div>
+            }
+          </div>
+
+        </div>
+      );
     }
 }
