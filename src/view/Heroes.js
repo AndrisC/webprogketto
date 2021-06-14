@@ -125,7 +125,25 @@ export default class Heroes extends React.Component {
       return (
         <div className="heroes-page">
           {this.state.loading ?
-            <div className="loading">loading...</div> :
+            <div id="heroes">
+              <div className="page-title">
+                <h1>Hero collection</h1>
+              </div>
+              <div className="card-container">
+                <div className="hero-card loading-placeholder">
+                  <div className="hero-pic"></div>
+                </div>
+                <div className="hero-card loading-placeholder">
+                  <div className="hero-pic"></div>
+                </div>
+                <div className="hero-card loading-placeholder">
+                  <div className="hero-pic"></div>
+                </div>
+                <div className="hero-card loading-placeholder">
+                  <div className="hero-pic"></div>
+                </div>
+              </div>
+            </div> :
 
             <div id="heroes">
               <div className="page-title">
