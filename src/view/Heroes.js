@@ -154,6 +154,12 @@ export default class Heroes extends React.Component {
               <div className="hero-card loading-placeholder">
                 <div className="hero-pic"></div>
               </div>
+              <div className="hero-card loading-placeholder">
+                <div className="hero-pic"></div>
+              </div>
+              <div className="hero-card loading-placeholder">
+                <div className="hero-pic"></div>
+              </div>
             </div>
           </div> :
 
