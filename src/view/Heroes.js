@@ -41,7 +41,7 @@ export default class Heroes extends React.Component {
     this.hideComponent = this.hideComponent.bind(this);
 
     let savedHeroes = localStorage.getItem("savedHeroes");
-    if (savedHeroes !== null) {
+    if (savedHeroes !== null  && this.state.currentPage === 1) {
       this.setState({
         heroes: JSON.parse(savedHeroes)
       })
