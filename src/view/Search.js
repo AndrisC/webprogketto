@@ -31,7 +31,7 @@ export default class Search extends React.Component {
 
     async fetchResults() {
       const urlName = "/api/3061607853876230/search/";
-      const nameFragment = document.getElementById("search-txt").value;
+      const nameFragment = (document.getElementById("search-txt").value).toLowerCase();
       this._onButtonClick = this._onButtonClick.bind(this);
       this.hideComponent = this.hideComponent.bind(this);
       console.log("Search: ", nameFragment);
