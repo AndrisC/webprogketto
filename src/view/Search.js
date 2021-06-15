@@ -75,7 +75,7 @@ export default class Search extends React.Component {
             <div className="container-title">
               <h3>Results:</h3>
             </div>
-            {!this.state.loaded || this.state.searchResults === null ?
+            {!this.state.loaded || typeof this.state.searchResults === 'undefined' ?
               <div className="container-title">
                 {typeof this.state.searchResults === 'undefined' ?
                   <p>No superhero found with that name... sorry</p> :
